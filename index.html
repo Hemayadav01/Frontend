@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INBOX-IQ</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <button class="menu-button">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="Search mail">
+                <button class="search-filter">
+                    <i class="fas fa-sliders-h"></i>
+                </button>
+            </div>
+        </div>
+        <div class="header-right">
+            <button class="header-button">
+                <i class="fas fa-question-circle"></i>
+            </button>
+            <button class="header-button">
+                <i class="fas fa-cog"></i>
+            </button>
+            <button class="header-button">
+                <i class="fas fa-th"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <nav class="sidebar-nav">
+                    <div class="nav-item active">
+                        <i class="fas fa-inbox"></i>
+                    </div>
+                    <div class="nav-item">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="nav-item">
+                        <i class="fas fa-paper-plane"></i>
+                    </div>
+                    <div class="nav-item">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Left Section: Email List -->
+        <div class="email-list-section">
+            <div class="email-toolbar">
+                <div class="email-actions">
+                    <button class="action-button">
+                        <i class="fas fa-archive"></i>
+                    </button>
+                    <button class="action-button">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </button>
+                    <button class="action-button">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                    <button class="action-button">
+                        <i class="fas fa-clock"></i>
+                    </button>
+                </div>
+                <div class="toolbar-right">
+                    <button class="action-button">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Email List Content -->
+            <div class="email-list-content">
+                <div class="empty-state">
+                    <div class="empty-icon">
+                        <i class="fas fa-inbox"></i>
+                    </div>
+                    <p class="empty-text">No emails to display</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Middle Section: Email Content -->
+        <main class="email-content-section">
+            <div class="welcome-container" id="welcomeScreen">
+                <div class="welcome-icon">
+                    <div class="icon-circle">
+                        <i class="fas fa-inbox"></i>
+                    </div>
+                </div>
+                <h1 class="welcome-title">Welcome to INBOX-IQ</h1>
+                <p class="welcome-subtitle">Select an email to view its content and access AI actions</p>
+                
+                <div class="features-list">
+                    <div class="feature-item">
+                        <i class="fas fa-star feature-icon"></i>
+                        <span>AI-powered email summarization</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-brain feature-icon"></i>
+                        <span>Smart response suggestions</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-chart-bar feature-icon"></i>
+                        <span>Email insights and analytics</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Email Content Display (Hidden by default) -->
+            <div class="email-content" id="emailContent" style="display: none;">
+                <div class="email-header">
+                    <div class="email-subject-line" id="emailSubject"></div>
+                    <div class="email-meta">
+                        <div class="sender-info">
+                            <div class="sender-name" id="senderName"></div>
+                            <div class="sender-email" id="senderEmail"></div>
+                        </div>
+                        <div class="email-timestamp" id="emailTimestamp"></div>
+                    </div>
+                </div>
+                <div class="email-body" id="emailBody"></div>
+            </div>
+        </main>
+
+        <!-- Right Section: AI Actions Panel -->
+        <aside class="ai-actions-panel">
+            <div class="ai-actions-header">
+                <h3 class="ai-actions-title">Select an email to see AI assistance</h3>
+            </div>
+            
+            <div class="ai-actions-content">
+                <div class="ai-action-buttons">
+                    <button class="ai-action-button disabled" id="summaryBtn" onclick="handleAIAction('summary')">
+                        <div class="action-icon">
+                            <i class="fas fa-file-text"></i>
+                        </div>
+                        <div class="action-content">
+                            <span class="action-title">Summary</span>
+                            <span class="action-subtitle">Get key points</span>
+                        </div>
+                    </button>
+                    
+                    <button class="ai-action-button disabled" id="responseBtn" onclick="handleAIAction('response')">
+                        <div class="action-icon">
+                            <i class="fas fa-reply"></i>
+                        </div>
+                        <div class="action-content">
+                            <span class="action-title">Response</span>
+                            <span class="action-subtitle">Smart reply suggestions</span>
+                        </div>
+                    </button>
+                    
+                    <button class="ai-action-button disabled" id="insightsBtn" onclick="handleAIAction('insights')">
+                        <div class="action-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="action-content">
+                            <span class="action-title">Insights</span>
+                            <span class="action-subtitle">Email analytics</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- JavaScript for functionality -->
+    <script>
+        // Email data will come from backend - this object is empty for clean frontend
+        const emailData = {};
+
+        let currentEmailId = null;
+        let currentSection = 'inbox';
+
+        // Email selection functionality
+        function selectEmail(emailId) {
+            currentEmailId = emailId;
+            const email = emailData[emailId];
+            
+            // Remove active class from all email items
+            document.querySelectorAll('.email-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Add active class to selected email
+            document.querySelector(`[data-email-id="${emailId}"]`).classList.add('active');
+            
+            // Hide welcome screen and show email content
+            document.getElementById('welcomeScreen').style.display = 'none';
+            document.getElementById('emailContent').style.display = 'block';
+            
+            // Populate email content
+            document.getElementById('emailSubject').textContent = email.subject;
+            document.getElementById('senderName').textContent = email.sender;
+            document.getElementById('senderEmail').textContent = email.senderEmail;
+            document.getElementById('emailTimestamp').textContent = email.timestamp;
+            document.getElementById('emailBody').innerHTML = email.body;
+            
+            // Enable AI action buttons
+            enableAIButtons();
+            
+            // Update AI panel header
+            document.querySelector('.ai-actions-title').textContent = 'AI Actions Available';
+        }
+
+        // Enable AI action buttons
+        function enableAIButtons() {
+            const buttons = ['summaryBtn', 'responseBtn', 'insightsBtn'];
+            buttons.forEach(btnId => {
+                const btn = document.getElementById(btnId);
+                btn.classList.remove('disabled');
+            });
+        }
+
+        // Handle AI actions
+        function handleAIAction(action) {
+            if (!currentEmailId) {
+                alert('Please select an email first');
+                return;
+            }
+            
+            const email = emailData[currentEmailId];
+            
+            switch(action) {
+                case 'summary':
+                    showAISummary(email);
+                    break;
+                case 'response':
+                    showAIResponse(email);
+                    break;
+                case 'insights':
+                    showAIInsights(email);
+                    break;
+            }
+        }
+
+        // AI Summary functionality
+        function showAISummary(email) {
+            // This will be connected to your backend AI service
+            const summaryModal = createModal('Email Summary', `
+                <div class="ai-result">
+                    <p>AI Summary will be generated by your backend service.</p>
+                    <p>Email ID: ${currentEmailId}</p>
+                </div>
+            `);
+            showModal(summaryModal);
+        }
+
+        // AI Response functionality
+        function showAIResponse(email) {
+            // This will be connected to your backend AI service
+            const responseModal = createModal('AI Response Suggestions', `
+                <div class="ai-result">
+                    <p>AI Response suggestions will be generated by your backend service.</p>
+                    <p>Email ID: ${currentEmailId}</p>
+                </div>
+            `);
+            showModal(responseModal);
+        }
+
+        // AI Insights functionality
+        function showAIInsights(email) {
+            // This will be connected to your backend AI service
+            const insightsModal = createModal('Email Insights', `
+                <div class="ai-result">
+                    <p>AI Insights will be generated by your backend service.</p>
+                    <p>Email ID: ${currentEmailId}</p>
+                </div>
+            `);
+            showModal(insightsModal);
+        }
+
+        // Modal functionality
+        function createModal(title, content) {
+            return `
+                <div class="modal-overlay" onclick="closeModal()">
+                    <div class="modal-content" onclick="event.stopPropagation()">
+                        <div class="modal-header">
+                            <h3>${title}</h3>
+                            <button class="close-modal" onclick="closeModal()">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            ${content}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function showModal(modalHtml) {
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+        }
+
+        function closeModal() {
+            const modal = document.querySelector('.modal-overlay');
+            if (modal) {
+                modal.remove();
+            }
+        }
+
+        function useResponse(button) {
+            const responseText = button.parentElement.querySelector('p').textContent;
+            alert('Response copied to clipboard! You can now paste it in your email composer.');
+            // In a real application, this would copy to clipboard and open compose window
+            closeModal();
+        }
+
+        // Search functionality
+        function handleSearch() {
+            const searchTerm = document.querySelector('.search-input').value.toLowerCase();
+            const emailItems = document.querySelectorAll('.email-item');
+            
+            emailItems.forEach(item => {
+                const sender = item.querySelector('.email-sender').textContent.toLowerCase();
+                const subject = item.querySelector('.email-subject').textContent.toLowerCase();
+                const preview = item.querySelector('.email-preview').textContent.toLowerCase();
+                
+                if (sender.includes(searchTerm) || subject.includes(searchTerm) || preview.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Navigation functionality
+        function handleNavigation(section) {
+            console.log(`Navigating to: ${section}`);
+            
+            // Remove active class from all nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Add active class to clicked item
+            event.target.closest('.nav-item').classList.add('active');
+            
+            // Update the current section
+            currentSection = section;
+            
+            // Update email list based on section
+            updateEmailList(section);
+            
+            // Reset the main content to welcome screen
+            showWelcomeScreen();
+        }
+
+        // Update email list based on section
+        function updateEmailList(section) {
+            const emailListContent = document.querySelector('.email-list-content');
+            
+            // Show empty state for all sections - emails will come from backend
+            emailListContent.innerHTML = `
+                <div class="empty-state">
+                    <div class="empty-icon">
+                        <i class="fas fa-inbox"></i>
+                    </div>
+                    <p class="empty-text">No emails in ${section}</p>
+                </div>
+            `;
+        }
+
+        // Show welcome screen
+        function showWelcomeScreen() {
+            document.getElementById('welcomeScreen').style.display = 'block';
+            document.getElementById('emailContent').style.display = 'none';
+            
+            // Disable AI buttons
+            const buttons = ['summaryBtn', 'responseBtn', 'insightsBtn'];
+            buttons.forEach(btnId => {
+                const btn = document.getElementById(btnId);
+                btn.classList.add('disabled');
+            });
+            
+            // Reset AI panel header
+            document.querySelector('.ai-actions-title').textContent = 'Select an email to see AI assistance';
+            
+            // Clear current email selection
+            currentEmailId = null;
+            document.querySelectorAll('.email-item').forEach(item => {
+                item.classList.remove('active');
+            });
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add search functionality
+            document.querySelector('.search-input').addEventListener('input', handleSearch);
+
+            // Add navigation listeners
+            document.querySelectorAll('.nav-item').forEach((item, index) => {
+                const sections = ['inbox', 'starred', 'sent', 'drafts'];
+                item.addEventListener('click', () => handleNavigation(sections[index]));
+            });
+
+            // Add action button listeners
+            document.querySelectorAll('.action-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const icon = this.querySelector('i').className;
+                    if (icon.includes('archive')) {
+                        console.log('Archive button clicked - connect to backend');
+                    } else if (icon.includes('exclamation')) {
+                        console.log('Mark as important button clicked - connect to backend');
+                    } else if (icon.includes('trash')) {
+                        console.log('Delete button clicked - connect to backend');
+                    } else if (icon.includes('clock')) {
+                        console.log('Snooze button clicked - connect to backend');
+                    }
+                });
+            });
+        });
+
+        // Backend integration functions (for future use)
+        const API = {
+            // Fetch emails from backend
+            async fetchEmails() {
+                try {
+                    const response = await fetch('/api/emails');
+                    const emails = await response.json();
+                    return emails;
+                } catch (error) {
+                    console.error('Error fetching emails:', error);
+                    return [];
+                }
+            },
+
+            // Get AI summary
+            async getAISummary(emailId) {
+                try {
+                    const response = await fetch(`/api/ai/summary/${emailId}`);
+                    const summary = await response.json();
+                    return summary;
+                } catch (error) {
+                    console.error('Error getting AI summary:', error);
+                    return null;
+                }
+            },
+
+            // Get AI response suggestions
+            async getAIResponse(emailId) {
+                try {
+                    const response = await fetch(`/api/ai/response/${emailId}`);
+                    const suggestions = await response.json();
+                    return suggestions;
+                } catch (error) {
+                    console.error('Error getting AI responses:', error);
+                    return null;
+                }
+            },
+
+            // Get AI insights
+            async getAIInsights(emailId) {
+                try {
+                    const response = await fetch(`/api/ai/insights/${emailId}`);
+                    const insights = await response.json();
+                    return insights;
+                } catch (error) {
+                    console.error('Error getting AI insights:', error);
+                    return null;
+                }
+            },
+
+            // Search emails
+            async searchEmails(query) {
+                try {
+                    const response = await fetch(`/api/emails/search?q=${encodeURIComponent(query)}`);
+                    const results = await response.json();
+                    return results;
+                } catch (error) {
+                    console.error('Error searching emails:', error);
+                    return [];
+                }
+            }
+        };
+    </script>
+</body>
+</html>

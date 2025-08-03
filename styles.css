@@ -1,0 +1,688 @@
+/* CSS Custom Properties */
+:root {
+    --primary-color: #6366f1;
+    --primary-dark: #4f46e5;
+    --secondary-color: #f3f4f6;
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --text-light: #9ca3af;
+    --border-color: #e5e7eb;
+    --hover-bg: #f9fafb;
+    --active-bg: #fef3c7;
+    --sidebar-width: 64px;
+    --header-height: 64px;
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: #fff;
+    color: var(--text-primary);
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* Header Styles */
+.header {
+    height: var(--header-height);
+    background-color: #fff;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.menu-button {
+    background: none;
+    border: none;
+    padding: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: background-color 0.2s;
+}
+
+.menu-button:hover {
+    background-color: var(--hover-bg);
+}
+
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    padding: 0 12px;
+    width: 400px;
+    height: 40px;
+}
+
+.search-icon {
+    color: var(--text-light);
+    margin-right: 8px;
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    background: none;
+    outline: none;
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+.search-input::placeholder {
+    color: var(--text-light);
+}
+
+.search-filter {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+    padding: 4px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header-button {
+    background: none;
+    border: none;
+    padding: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: background-color 0.2s;
+}
+
+.header-button:hover {
+    background-color: var(--hover-bg);
+}
+
+
+
+/* Main Container */
+.main-container {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) 320px 1fr 280px;
+    height: 100vh;
+    padding-top: var(--header-height);
+}
+
+/* Sidebar Styles */
+.sidebar {
+    background-color: #fff;
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-content {
+    padding: 8px 0;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    margin: 0 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    color: var(--text-secondary);
+}
+
+.nav-item:hover {
+    background-color: var(--hover-bg);
+}
+
+.nav-item.active {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+.nav-item i {
+    font-size: 20px;
+}
+
+/* Left Section: Email List */
+.email-list-section {
+    background-color: #fff;
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.email-toolbar {
+    height: 48px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    background-color: #fff;
+}
+
+.email-actions {
+    display: flex;
+    gap: 4px;
+}
+
+.action-button {
+    background: none;
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: background-color 0.2s;
+}
+
+.action-button:hover {
+    background-color: var(--hover-bg);
+}
+
+.email-list-content {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.email-item {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.email-item:hover {
+    background-color: var(--hover-bg);
+}
+
+.email-item.active {
+    background-color: #fef3c7;
+    border-left: 3px solid var(--primary-color);
+}
+
+.email-item-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.email-sender {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+.email-subject {
+    font-weight: 500;
+    font-size: 13px;
+    color: var(--text-primary);
+    line-height: 1.3;
+}
+
+.email-preview {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.3;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.email-time {
+    font-size: 12px;
+    color: var(--text-light);
+    align-self: flex-end;
+    margin-top: 4px;
+}
+
+.empty-state {
+    text-align: center;
+    color: var(--text-light);
+    padding: 60px 16px;
+}
+
+.empty-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    opacity: 0.3;
+}
+
+.empty-text {
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Middle Section: Email Content */
+.email-content-section {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+}
+
+.welcome-container {
+    text-align: center;
+    max-width: 400px;
+}
+
+.welcome-icon {
+    margin-bottom: 24px;
+}
+
+.icon-circle {
+    width: 80px;
+    height: 80px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    color: white;
+    font-size: 32px;
+}
+
+.welcome-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.welcome-subtitle {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+    line-height: 1.5;
+}
+
+.features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: left;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.feature-icon {
+    width: 16px;
+    color: var(--primary-color);
+}
+
+/* Right Section: AI Actions Panel */
+.ai-actions-panel {
+    background-color: #fff;
+    border-left: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.ai-actions-header {
+    padding: 20px 16px;
+    border-bottom: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.ai-actions-title {
+    font-size: 14px;
+    color: var(--text-light);
+    font-weight: 400;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.ai-actions-content {
+    flex: 1;
+    padding: 20px 16px;
+}
+
+.ai-action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.ai-action-button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+    width: 100%;
+}
+
+.ai-action-button:hover:not(.disabled) {
+    border-color: var(--primary-color);
+    background-color: #fafbff;
+}
+
+.ai-action-button.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #f9fafb;
+}
+
+.action-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.ai-action-button:hover:not(.disabled) .action-icon {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.action-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.action-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+.action-subtitle {
+    font-size: 12px;
+    color: var(--text-light);
+    line-height: 1.3;
+}
+
+/* Email Content Styles */
+.email-content {
+    padding: 24px;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.email-header {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.email-subject-line {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    line-height: 1.3;
+}
+
+.email-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.sender-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.sender-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+.sender-email {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.email-timestamp {
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+.email-body {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-primary);
+}
+
+.email-body h3 {
+    color: var(--text-primary);
+    margin: 20px 0 12px 0;
+    font-size: 16px;
+}
+
+.email-body ul, .email-body ol {
+    margin: 12px 0;
+    padding-left: 20px;
+}
+
+.email-body li {
+    margin: 8px 0;
+}
+
+.email-body p {
+    margin: 12px 0;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 12px;
+    max-width: 600px;
+    max-height: 80vh;
+    width: 90%;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--text-light);
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-modal:hover {
+    color: var(--text-primary);
+}
+
+.modal-body {
+    padding: 24px;
+    overflow-y: auto;
+    max-height: 60vh;
+}
+
+.ai-result h4 {
+    color: var(--text-primary);
+    margin: 0 0 12px 0;
+    font-size: 15px;
+}
+
+.ai-result ul {
+    margin: 0 0 16px 0;
+    padding-left: 20px;
+}
+
+.ai-result li {
+    margin: 6px 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.ai-result p {
+    margin: 8px 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.response-option {
+    margin-bottom: 20px;
+    padding: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--hover-bg);
+}
+
+.response-option h4 {
+    margin: 0 0 8px 0;
+    color: var(--primary-color);
+}
+
+.response-option p {
+    margin: 0 0 12px 0;
+    font-style: italic;
+    color: var(--text-primary);
+}
+
+.use-response-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.use-response-btn:hover {
+    background-color: var(--primary-dark);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .main-container {
+        grid-template-columns: var(--sidebar-width) 280px 1fr 260px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .main-container {
+        grid-template-columns: var(--sidebar-width) 1fr 260px;
+    }
+    
+    .email-list-section {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .sidebar,
+    .ai-actions-panel {
+        display: none;
+    }
+    
+    .search-container {
+        width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-container {
+        width: 200px;
+    }
+    
+    .welcome-container {
+        padding: 16px;
+    }
+    
+    .welcome-title {
+        font-size: 20px;
+    }
+}
